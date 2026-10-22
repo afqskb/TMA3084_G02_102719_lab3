@@ -31,9 +31,18 @@ class MenuScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: const [
-            MenuCard('https://www.recipetineats.com/tachyon/2023/05/Garlic-cheese-pizza_9.jpg', 'Garlic Cheese Pizza'),
-            MenuCard('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh3wbUMEd5PdWlI27MV2F7hPMWMuwrxa5kU55BfpRIUguX5BONQywSrvIQ&s=10', 'Chicken Parmesan Pizza'),
-            MenuCard('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLTo_btsWNRt2iU5QKKkriobzIrWaM3zZ83aLRqIrkp9aDrPkN5rGuSoI&s=10', 'Spinach Mayo Pizza'),
+            MenuCard(
+              'https://www.recipetineats.com/tachyon/2023/05/Garlic-cheese-pizza_9.jpg',
+              'Garlic Cheese Pizza',
+            ),
+            MenuCard(
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh3wbUMEd5PdWlI27MV2F7hPMWMuwrxa5kU55BfpRIUguX5BONQywSrvIQ&s=10',
+              'Chicken Parmesan Pizza',
+            ),
+            MenuCard(
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLTo_btsWNRt2iU5QKKkriobzIrWaM3zZ83aLRqIrkp9aDrPkN5rGuSoI&s=10',
+              'Spinach Mayo Pizza',
+            ),
           ],
         ),
       ),
@@ -42,13 +51,10 @@ class MenuScreen extends StatelessWidget {
 }
 
 class MenuCard extends StatelessWidget {
-
   final String imgurl;
   final String title;
 
   const MenuCard(this.imgurl, this.title, {super.key});
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +68,13 @@ class MenuCard extends StatelessWidget {
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(8), // Optional: rounds image corners nicely
+              borderRadius: BorderRadius.circular(
+                8,
+              ), // Optional: rounds image corners nicely
               child: Image.network(
-                imgurl, 
-                width: 100, 
-                height: 100, 
+                imgurl,
+                width: 100,
+                height: 100,
                 fit: BoxFit.cover,
                 // Shows a spinner while downloading the image
                 loadingBuilder: (context, child, loadingProgress) {
@@ -74,14 +82,20 @@ class MenuCard extends StatelessWidget {
                   return const SizedBox(
                     width: 100,
                     height: 100,
-                    child: Center(child: CircularProgressIndicator(color: Colors.white)),
+                    child: Center(
+                      child: CircularProgressIndicator(color: Colors.white),
+                    ),
                   );
                 },
                 // Fallback icon if the internet fails or the link breaks
                 errorBuilder: (context, error, stackTrace) => const SizedBox(
                   width: 100,
                   height: 100,
-                  child: Icon(Icons.broken_image, color: Colors.white, size: 40),
+                  child: Icon(
+                    Icons.broken_image,
+                    color: Colors.white,
+                    size: 40,
+                  ),
                 ),
               ),
             ),
@@ -91,7 +105,8 @@ class MenuCard extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 24, // Reduced slightly from 30 so long names fit easily
+                  fontSize:
+                      24, // Reduced slightly from 30 so long names fit easily
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
